@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="Cryptography/Cryptography.cpp">
+      <Filter>Cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="Database/DatabaseManager.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="Game/Accounts/Account.cpp">
+      <Filter>Game\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="Network/Network.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network/Connection.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network/Client.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Network">
+      <UniqueIdentifier>{577eee66-1bdc-481d-b259-fe6723000353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cryptography">
+      <UniqueIdentifier>{f2d0b93e-4b98-4ba6-b2e6-c332f98f645b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets">
+      <UniqueIdentifier>{2cea822d-444a-47db-adda-81a435d680a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server">
+      <UniqueIdentifier>{f84217bf-4b49-458d-9fab-b98c18b25c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Client">
+      <UniqueIdentifier>{1445362a-9fb8-4a8a-b844-01eedd78671d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0b8c1077-747d-40df-ae07-fb95ff565070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts">
+      <UniqueIdentifier>{6f3e6ed9-cd01-4e3b-aee4-deae20eadf3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Database">
+      <UniqueIdentifier>{fd3ac31e-99c1-49a3-892f-7004cd8d33b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts\LobbyCharacters">
+      <UniqueIdentifier>{ebc17232-a2a4-4693-8323-5dab6b7e6d19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Client\Lobby">
+      <UniqueIdentifier>{62c8a272-1e67-4ce7-9eca-8bb91b07c27d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\Messages">
+      <UniqueIdentifier>{b767a54b-d6a2-4ac9-97fe-78b7cfd2a4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\Lobby">
+      <UniqueIdentifier>{07f88c57-b688-45dc-a710-455ef1371d75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="ForbiddenString.h" />
+    <ClInclude Include="Conststring.h" />
+    <ClInclude Include="Cryptography/Cryptography.h">
+      <Filter>Cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="Database/Requests.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Database/DatabaseManager.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Accounts/Account.h">
+      <Filter>Game\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Accounts/LobbyCharacter.h">
+      <Filter>Game\Accounts\LobbyCharacters</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/BaseClientPacket.h">
+      <Filter>Network\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/BaseServerPacket.h">
+      <Filter>Network\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_UsernamePacket.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_Char_DEL.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_Char_NEW.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_Char_NEW_JOB.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_Char_REN.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_PasswordPacket.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Client/Lobby/R_select.h">
+      <Filter>Network\Packets\Client\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Lobby/S_success.h">
+      <Filter>Network\Packets\Server\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Lobby/S_OK.h">
+      <Filter>Network\Packets\Server\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Lobby/S_clist_start.h">
+      <Filter>Network\Packets\Server\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Lobby/S_clist.h">
+      <Filter>Network\Packets\Server\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Lobby/S_clist_end.h">
+      <Filter>Network\Packets\Server\Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Packets/Server/Messages/S_infoi.h">
+      <Filter>Network\Packets\Server\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/LangType.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/HairStyleType.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/GenderType.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/ClassType.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Network.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Connection.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network/Client.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
