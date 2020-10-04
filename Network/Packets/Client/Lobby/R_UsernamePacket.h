@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Network/Packets/BaseClientPacket.h"
-#include "Game/LangType.h"
+#include "Game/Types/LangType.h"
 
 class R_UsernamePacket : public BaseClientPacket
 {

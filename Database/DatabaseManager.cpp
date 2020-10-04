@@ -36,12 +36,17 @@ std::vector<std::vector<std::string>> DatabaseManager::query(const std::string& 
 	int it = 0;
 	while ((row = mysql_fetch_row(res)) && (it < maxNbIteration || maxNbIteration == -1))
 	{
+		if (row[0] == nullptr)
+			break;
 		std::vector<std::string> tmp;
 		for (size_t i = 0; i < res->field_count; i++)
 			tmp.push_back(row[i]); // Populate by columns
 		output.push_back(tmp); // Populate by rows
 		it++;
 	}
+	while (mysql_more_results(connection))
+		mysql_next_result(connection);
+	mysql_free_result(res);
 	return output;
 }
 
@@ -55,19 +60,22 @@ std::vector<std::string> DatabaseManager::query(const std::string& query)
 	if (!res)
 		return {};
 	std::vector<std::string> output;
-	MYSQL_ROW row;
-	if (row = mysql_fetch_row(res))
+	MYSQL_ROW row = mysql_fetch_row(res);
+	if (row)
 	{
 		for (size_t i = 0; i < res->field_count; i++)
 			output.push_back(row[i]);
 	}
+	while (mysql_more_results(connection))
+		mysql_next_result(connection);
+	mysql_free_result(res);
 	return output;
 }
 
-bool DatabaseManager::call(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args)
+std::vector<std::vector<std::string>> DatabaseManager::call(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args)
 {
 	if (!connection)
-		return false;
+		return {};
 	std::string query = "CALL " + functionName + "(";
 	for (size_t i = 0; i < args.size(); i++)
 	{
@@ -77,12 +85,68 @@ bool DatabaseManager::call(const std::string& functionName, const std::vector<st
 		else if (current.first == SQL_TYPE::STRING)
 			query += "\'" + current.second + "\'";
 		else
-			return false;
+			return {};
 		if (i < args.size() - 1)
 			query += ", ";
 	}
 	query += ");";
-	return (!mysql_query(connection, query.c_str()) && !mysql_errno(connection));
+	if (mysql_query(connection, query.c_str()))
+	{
+		std::cout << mysql_errno(connection);
+		return {};
+	}
+	MYSQL_RES* res = mysql_store_result(connection);
+	if (!res)
+		return {};
+	std::vector<std::vector<std::string>> output;
+	MYSQL_ROW row;
+	while (row = mysql_fetch_row(res))
+	{
+		if (row[0] == nullptr)
+			break;
+		std::vector<std::string> tmp;
+		for (size_t i = 0; i < res->field_count; i++)
+			tmp.push_back(row[i]); // Populate by columns
+		output.push_back(tmp); // Populate by rows
+	}
+	while (mysql_more_results(connection))
+		mysql_next_result(connection);
+	mysql_free_result(res);
+	return output;
+}
+
+std::vector<std::vector<std::string>> DatabaseManager::call(const std::string& functionName, const std::pair<SQL_TYPE, std::string>& args)
+{
+	if (!connection)
+		return {};
+	std::string query = "CALL " + functionName + "(";
+	if (args.first == SQL_TYPE::INT)
+		query += args.second;
+	else if (args.first == SQL_TYPE::STRING)
+		query += "\'" + args.second + "\'";
+	else
+		return {};
+	query += ");";
+	if (mysql_query(connection, query.c_str()))
+		return {};
+	MYSQL_RES* res = mysql_store_result(connection);
+	if (!res)
+		return {};
+	std::vector<std::vector<std::string>> output;
+	MYSQL_ROW row;
+	while (row = mysql_fetch_row(res))
+	{
+		if (row[0] == nullptr)
+			break;
+		std::vector<std::string> tmp;
+		for (size_t i = 0; i < res->field_count; i++)
+			tmp.push_back(row[i]); // Populate by columns
+		output.push_back(tmp); // Populate by rows
+	}
+	while (mysql_more_results(connection))
+		mysql_next_result(connection);
+	mysql_free_result(res);
+	return output;
 }
 
 std::vector<std::vector<std::string>> DatabaseManager::selectFunction(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args)
@@ -103,9 +167,6 @@ std::vector<std::vector<std::string>> DatabaseManager::selectFunction(const std:
 			query += ", ";
 	}
 	query += ");";
-
-	/*SELECT ayugradb.f_create_character(1, 1, 'er', 1, 1, 1, 1, 1, 1, 1, 1, 1);*/
-
 	if (mysql_query(connection, query.c_str()))
 		return {};
 	MYSQL_RES* res = mysql_store_result(connection);
@@ -113,15 +174,18 @@ std::vector<std::vector<std::string>> DatabaseManager::selectFunction(const std:
 		return {};
 	std::vector<std::vector<std::string>> output;
 	MYSQL_ROW row;
-	int it = 0;
 	while (row = mysql_fetch_row(res))
 	{
+		if (row[0] == nullptr)
+			break;
 		std::vector<std::string> tmp;
-		for (size_t i = 0; i < res->field_count; i++)
+		for (size_t i = 0; i < mysql_num_fields(res); i++)
 			tmp.push_back(row[i]); // Populate by columns
 		output.push_back(tmp); // Populate by rows
-		it++;
 	}
+	while (mysql_more_results(connection))
+		mysql_next_result(connection);
+	mysql_free_result(res);
 	return output;
 }
 

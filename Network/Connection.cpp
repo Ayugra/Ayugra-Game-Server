@@ -18,7 +18,7 @@ Connection::Connection(asio::io_context& IoContext)
 
 Connection::~Connection()
 {
-	DatabaseManager::query("UPDATE ay_accounts_status SET connected = '0', server = '0', channel = '0' WHERE id = '" + std::to_string(client.getAccountId()) + "'");
+	DatabaseManager::call("p_disconnect", { SQL_TYPE::INT, std::to_string(client.getAccountId()) });
 	socket.shutdown(asio::ip::tcp::socket::shutdown_both);
 	socket.close();
 	std::cout << "Connection::~Connection();" << std::endl;
@@ -59,19 +59,31 @@ void Connection::sendPacket(const std::string& Packet)
 	});
 }
 
-void Connection::setConnectionId(size_t ConnectionId)
+void Connection::setConnectionId(int ConnectionId)
 {
 	connectionId = ConnectionId;
+	client.setConnectionId(ConnectionId);
 }
 
-size_t Connection::getConnectionId() const
+int Connection::getConnectionId() const
 {
 	return connectionId;
 }
 
-void Connection::setDisconnectionCallback(std::function<void(size_t)> CbDisconnect)
+OwnCharacter Connection::getConnectedCharacter() const
+{
+	return client.getConnectedCharacter();
+}
+
+void Connection::setDisconnectionCallback(std::function<void(int)> CbDisconnect)
 {
 	cbDisconnect = CbDisconnect;
+}
+
+void Connection::setRetrieveCharacterCallback(std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter)
+{
+	cbRetrieveCharacter = CbRetrieveCharacter;
+	client.setRetrieveCharacterCallback(CbRetrieveCharacter);
 }
 
 void Connection::startReading()

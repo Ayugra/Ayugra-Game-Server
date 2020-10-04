@@ -1,39 +1,48 @@
-#include "Network/Network.h"
-#include "Database/DatabaseManager.h"
-#include "Configuration.h"
 #include <iostream>
-
-void startServerConnection()
-{
-	asio::io_context io_context;
-	Network server(io_context, Configuration::d_server_port());
-	server.startServer();
-	io_context.run();
-}
+#include "Engine.h"
 
 /*	auto t1 = std::chrono::high_resolution_clock::now();
 
 	auto t2 = std::chrono::high_resolution_clock::now();
-	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count(); // 3017
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count(); // µs
 	std::cout << duration;
 */
 
+
+
+#include "Configuration/XpConfiguration.h"
+#include "Configuration/CharStatsConfiguration.h"
 int main()
 {
-	Configuration conf;
-	while (!conf.load())
+	XpConfiguration XpConfig;
+	while (!XpConfig.load())
 	{
-		std::cout << "Config not loaded" << std::endl;
-		Sleep(2000);
+		std::cout << "xp_table.json not loaded... Retry in 5s" << std::endl;
+		Sleep(5000);
 	}
 
-	DatabaseManager dbMng(conf.d_database_host(), conf.d_database_username(), conf.d_database_password(), conf.d_database_database(),
-		conf.d_database_port());
+	CharStatsConfiguration CharStatsConfig;
+	while (!CharStatsConfig.load())
+	{
+		std::cout << "character_stats_table.json not loaded... Retry in 5s" << std::endl;
+		Sleep(5000);
+	}
 
-	std::thread networkThread(&startServerConnection);
+	ServerConfiguration Config;
+	while (!Config.load())
+	{
+		std::cout << "ServGame_config.json not loaded... Retry in 5s" << std::endl;
+		Sleep(5000);
+	}
+	DatabaseManager dbMng(Config.d_database_host(), Config.d_database_username(), Config.d_database_password(), Config.d_database_database(), Config.d_database_port());
+	asio::io_context io_context;
+	Engine engine(io_context, Config);
+	engine.start();
+
 	while (true)
 	{
 		Sleep(2000);
+		std::cout << ".";
 	}
 	return 0;
 }

@@ -13,12 +13,14 @@ public:
 	asio::ip::tcp::socket& getSocket();
 	void start();
 	void sendPacket(const std::string& Packet);
-	void setConnectionId(size_t ConnectionId);
-	size_t getConnectionId() const;
+	void setConnectionId(int ConnectionId);
+	int getConnectionId() const;
+	OwnCharacter getConnectedCharacter() const;
 
 
 	// Signals & Slots system
-	void setDisconnectionCallback(std::function<void(size_t)> CbDisconnect);
+	void setDisconnectionCallback(std::function<void(int)> CbDisconnect);
+	void setRetrieveCharacterCallback(std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter);
 
 private:
 	Connection(asio::io_context& IoContext);
@@ -35,12 +37,12 @@ private:
 	bool started;
 	int encryptionKey;
 	unsigned short packetId;
-	size_t connectionId;
+	int connectionId;
 	Client client;
 	bool disconnected;
 
 
-
 	// Signals & Slots system
-	std::function<void(size_t)> cbDisconnect;
+	std::function<void(int)> cbDisconnect;
+	std::function<void(std::shared_ptr<OwnCharacter>)> cbRetrieveCharacter;
 };

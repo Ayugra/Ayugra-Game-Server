@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "Game/ClassType.h"
-#include "Game/HairStyleType.h"
-#include "Game/GenderType.h"
+#include "Game/Types/ClassType.h"
+#include "Game/Types/HairStyleType.h"
+#include "Game/Types/GenderType.h"
 
 class LobbyCharacter
 {
@@ -24,6 +24,7 @@ public:
 		, questAct(-1)
 		, questChapter(-1)
 		, petSet("-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.")
+		, connectionId(-1)
 		, valid(false)
 	{}
 
@@ -44,6 +45,7 @@ public:
 		, questAct(QuestAct)
 		, questChapter(QuestChapter)
 		, petSet(PetSet)
+		, connectionId(-1)
 		, valid(true)
 	{
 		
@@ -71,35 +73,30 @@ public:
 		return p;
 	}
 
-	void changePseudonym(const std::string& newPseudonym)
-	{
-		pseudonym = newPseudonym;
-	}
+	void changePseudonym(const std::string& newPseudonym)	{ pseudonym = newPseudonym; }
+	void setRename(bool Rename)								{ rename = Rename; }
 
-	int getCharacterId() const
-	{
-		return id;
-	}
+	int getCharacterId() const			{ return id; }
+	bool canChangePseudonym() const		{ return rename; }
+	std::string getPseudonym() const	{ return pseudonym; }
+	short getSlot() const				{ return slot; }
+	GenderType getGender() const		{ return gender; }
+	HairStyleType getHairStyle() const	{ return hairStyle; }
+	int getHairColor() const			{ return hairColor; }
+	ClassType getCharClass() const		{ return charClass; }
+	int getLevel() const				{ return level; }
+	int getLevelHero() const			{ return levelHero; }
+	int getLevelJob() const				{ return levelJob; }
+	std::string getWornStuff() const	{ return wornStuff; }
+	short getQuestAct() const			{ return questAct; }
+	short getQuestChapter() const		{ return questChapter; }
+	std::string getPetSet() const		{ return petSet; }
 
-	bool canChangePseudonym() const
-	{
-		return rename;
-	}
+	int getConnectionId() const			{ return connectionId; }
+	bool isValid() const				{ return valid; }
 
-	void setRename(bool Rename)
-	{
-		rename = Rename;
-	}
 
-	std::string getPseudonym() const
-	{
-		return pseudonym;
-	}
-
-	bool isValid() const
-	{
-		return valid;
-	}
+	void setConnectionId(int ConnectionId) { connectionId = ConnectionId; }
 
 private:
 	bool valid;
@@ -119,4 +116,6 @@ private:
 	short questAct;
 	short questChapter;
 	std::string petSet;
+
+	int connectionId;
 };

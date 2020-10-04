@@ -2,8 +2,8 @@
 
 #include <map>
 #include <functional>
-#include "Game/Accounts/LobbyCharacters/LobbyCharacter.h"
 #include "Database/DatabaseManager.h"
+#include "Game/Accounts/LobbyCharacters/LobbyCharacter.h"
 #include "Network/Packets/Client/Lobby/R_UsernamePacket.h"
 #include "Network/Packets/Client/Lobby/R_PasswordPacket.h"
 #include "Network/Packets/Client/Lobby/R_Char_NEW.h"
@@ -23,7 +23,12 @@ public:
 	std::string getUsername() const;
 	std::string getPassword() const;
 	int getAccountId() const;
+	int getSelectedCharacterId() const;
+	int getAuthority() const;
 	LobbyCharacter getSelectedLobbyCharacter() const;
+
+	void setConnectionId(int ConnectionId);
+	int getConnectionId() const;
 
 	std::vector<std::string> handlePacket(const BaseClientPacket& Packet);
 
@@ -38,8 +43,8 @@ private:
 
 	std::vector<std::string> loadLobbyCharacters(short selected = -1);
 	bool connectAccount();
-	bool createAccount(const R_Char_NEW& Packet, ClassType charClass);
-	bool deleteAccount(short slot);
+	bool createCharacter(const R_Char_NEW& Packet, ClassType charClass);
+	bool deleteCharacter(short slot);
 
 	bool connected;
 	int accountId;
@@ -50,6 +55,7 @@ private:
 	LangType lang;
 	std::map<short, LobbyCharacter> lobbyCharacters;
 	short selectedSlot;
+	int connectionId;
 	
 	
 	// Signals & Slots system

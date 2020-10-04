@@ -92,14 +92,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32_WINNT=0x0601;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\Program Files\MySQL\Connector C++ 8.0\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\ProgramData\rapidjson-master\include\rapidjson;C:\ProgramData\asio-master\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\Program Files\MySQL\Connector C++ 8.0\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\ProgramData\rapidjson-master\include\rapidjson;C:\ProgramData\asio-master\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -110,10 +110,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,12 +129,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +150,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32_WINNT=0x0601;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\ProgramData\rapidjson-master\include\rapidjson;C:\ProgramData\asio-master\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\Users\mahej\source\repos\AyugraEmulatorProject\ServGame;C:\Program Files\MySQL\Connector C++ 1.1\include;C:\Program Files\MySQL\MySQL Server 8.0\include;C:\ProgramData\rapidjson-master\include\rapidjson;C:\ProgramData\asio-master\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -152,14 +158,19 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;C:\Program Files\MySQL\Connector C++ 1.1\lib\opt;C:\Program Files\MySQL\MySQL Server 8.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;libmysql.lib;mysqlcppconn.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Configuration\CharStatsConfiguration.cpp" />
+    <ClCompile Include="Configuration\XpConfiguration.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game/Accounts/Account.cpp" />
+    <ClCompile Include="Game/Accounts/Character/OwnCharacter.cpp" />
+    <ClCompile Include="Game\World\World.cpp" />
     <ClCompile Include="Network/Client.cpp" />
-    <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="Configuration/ServerConfiguration.cpp" />
     <ClCompile Include="Network/Connection.cpp" />
     <ClCompile Include="Cryptography/Cryptography.cpp" />
     <ClCompile Include="Database/DatabaseManager.cpp" />
@@ -167,22 +178,36 @@
     <ClCompile Include="Network/Network.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Configuration\CharStatsConfiguration.h" />
+    <ClInclude Include="Configuration\XpConfiguration.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Game/Accounts/Account.h" />
+    <ClInclude Include="Game/Accounts/Character/OwnCharacter.h" />
+    <ClInclude Include="Game\Accounts\Character\Attributes\Level.h" />
+    <ClInclude Include="Game\Accounts\Character\Attributes\Position.h" />
+    <ClInclude Include="Game\Accounts\Character\Attributes\Reputation.h" />
+    <ClInclude Include="Game\Types\DignityType.h" />
+    <ClInclude Include="Game\Types\ReputationType.h" />
+    <ClInclude Include="Game\UIManager\Ladder\Act4PointsManager.h" />
+    <ClInclude Include="Game\UIManager\Ladder\ComplimentManager.h" />
+    <ClInclude Include="Game\UIManager\Ladder\LadderEntity.h" />
+    <ClInclude Include="Game\UIManager\Ladder\ReputationManager.h" />
+    <ClInclude Include="Game\World\World.h" />
     <ClInclude Include="Network/Packets/BaseClientPacket.h" />
     <ClInclude Include="Network/Packets/BaseServerPacket.h" />
     <ClInclude Include="Network/Packets/Client/Lobby/R_Char_REN.h" />
-    <ClInclude Include="Game/ClassType.h" />
+    <ClInclude Include="Game/Types/ClassType.h" />
     <ClInclude Include="Network/Client.h" />
-    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="Configuration/ServerConfiguration.h" />
     <ClInclude Include="Network/Connection.h" />
     <ClInclude Include="Conststring.h" />
     <ClInclude Include="Cryptography/Cryptography.h" />
     <ClInclude Include="Database/DatabaseManager.h" />
     <ClInclude Include="ForbiddenString.h" />
-    <ClInclude Include="Game/GenderType.h" />
-    <ClInclude Include="Game/HairStyleType.h" />
-    <ClInclude Include="Game/LangType.h" />
-    <ClInclude Include="Game/Accounts/LobbyCharacter.h" />
+    <ClInclude Include="Game/Types/GenderType.h" />
+    <ClInclude Include="Game/Types/HairStyleType.h" />
+    <ClInclude Include="Game/Types/LangType.h" />
+    <ClInclude Include="Game/Accounts/LobbyCharacters/LobbyCharacter.h" />
     <ClInclude Include="Network/Network.h" />
     <ClInclude Include="Database/Requests.h" />
     <ClInclude Include="Network/Packets/Client/Lobby/R_Char_DEL.h" />
@@ -197,6 +222,17 @@
     <ClInclude Include="Network/Packets/Server/Lobby/S_OK.h" />
     <ClInclude Include="Network/Packets/Server/Lobby/S_success.h" />
     <ClInclude Include="Network/Packets/Client/Lobby/R_UsernamePacket.h" />
+    <ClInclude Include="Network\Packets\Client\R_game_start.h" />
+    <ClInclude Include="Network\Packets\Server\Character\S_c_info.h" />
+    <ClInclude Include="Network\Packets\Server\Character\S_c_info_reset.h" />
+    <ClInclude Include="Network\Packets\Server\Character\S_fd.h" />
+    <ClInclude Include="Network\Packets\Server\Character\S_lev.h" />
+    <ClInclude Include="Network\Packets\Server\Map\S_at.h" />
+    <ClInclude Include="Network\Packets\Server\Map\S_c_map.h" />
+    <ClInclude Include="Network\Packets\Server\Messages\S_tit.h" />
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_clinit.h" />
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_kdlinit.h" />
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_flinit.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,12 +1,12 @@
 #include "Network.h"
-
 #include <iostream>
 
-Network::Network(asio::io_context& IoContext, unsigned short Port)
+Network::Network(asio::io_context& IoContext, unsigned short Port, std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter)
 	: ioContext(IoContext)
 	, acceptor(ioContext, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), Port))
 	, started(false)
 	, lastConnectionId(1)
+	, cbRetrieveCharacter(CbRetrieveCharacter)
 {
 
 }
@@ -25,6 +25,32 @@ void Network::startServer()
 	}
 }
 
+void Network::sendPacketBroadcast(const std::string& Packet)
+{
+	std::cout << "Broadcasted : " << Packet << std::endl;
+	for (auto it = connections.begin(); it != connections.end(); ++it)
+		it->second->sendPacket(Packet);
+}
+
+void Network::sendPacketTo(const std::vector<int>& connectionsId, const std::string& Packet)
+{
+	for (int it : connectionsId)
+	{
+		if (connections.find(it) != connections.end())
+			connections.at(it)->sendPacket(Packet);
+	}
+}
+
+std::vector<OwnCharacter> Network::getConnectedCharacters() const
+{
+	std::vector<OwnCharacter> characters;
+	for (auto character : connections)
+	{
+		characters.push_back(character.second->getConnectedCharacter());
+	}
+	return characters;
+}
+
 void Network::startAccept()
 {
 	std::shared_ptr<Connection> connection = Connection::create(ioContext);
@@ -35,8 +61,9 @@ void Network::onAccept(std::shared_ptr<Connection> connection, const asio::error
 {
 	if (!error)
 	{
-		connections.insert(std::pair<size_t, std::shared_ptr<Connection>>(lastConnectionId, connection));
-		connection->setDisconnectionCallback(std::bind(&Network::onDisconnection, this, lastConnectionId));
+		connections.insert(std::pair<int, std::shared_ptr<Connection>>(lastConnectionId, connection));
+		connection->setDisconnectionCallback(std::bind(&Network::onDisconnection, this, lastConnectionId)); // Not sure about the last argument, wtf did I do ?
+		connection->setRetrieveCharacterCallback(cbRetrieveCharacter);
 		connection->setConnectionId(lastConnectionId);
 		lastConnectionId++;
 		connection->start();
@@ -44,25 +71,8 @@ void Network::onAccept(std::shared_ptr<Connection> connection, const asio::error
 	startAccept();
 }
 
-void Network::onDisconnection(size_t connectionId)
+void Network::onDisconnection(int connectionId)
 {
 	std::cout << "Erased : " << connectionId << std::endl;
-
-	for (int i = 0; i < connections.size(); i++)
-	{
-		std::vector<int> key, value;
-		for (std::map<size_t, std::shared_ptr<Connection>>::iterator it = connections.begin(); it != connections.end(); ++it) {
-			key.push_back(it->first);
-			std::cout << "Key: " << it->first << std::endl;
-		}
-	}
 	connections.erase(connectionId);
-	for (int i = 0; i < connections.size(); i++)
-	{
-		std::vector<int> key, value;
-		for (std::map<size_t, std::shared_ptr<Connection>>::iterator it = connections.begin(); it != connections.end(); ++it) {
-			key.push_back(it->first);
-			std::cout << "Key: " << it->first << std::endl;
-		}
-	}
 }

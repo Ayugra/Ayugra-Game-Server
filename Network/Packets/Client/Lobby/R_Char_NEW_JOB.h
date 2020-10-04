@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Network/Packets/BaseClientPacket.h"
-#include "Game/GenderType.h"
-#include "Game/HairStyleType.h"
+#include "Game/Types/GenderType.h"
+#include "Game/Types/HairStyleType.h"
 #include "ForbiddenString.h"
 
 class R_Char_NEW_JOB : public BaseClientPacket

@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Cryptography/Cryptography.cpp">
       <Filter>Cryptography</Filter>
     </ClCompile>
@@ -20,6 +19,22 @@
     </ClCompile>
     <ClCompile Include="Network/Client.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Game/Accounts/Character/OwnCharacter.cpp">
+      <Filter>Game\Accounts\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\World\World.cpp">
+      <Filter>Game\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration/ServerConfiguration.cpp">
+      <Filter>Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration\XpConfiguration.cpp">
+      <Filter>Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration\CharStatsConfiguration.cpp">
+      <Filter>Configuration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +74,42 @@
     <Filter Include="Network\Packets\Server\Lobby">
       <UniqueIdentifier>{07f88c57-b688-45dc-a710-455ef1371d75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Types">
+      <UniqueIdentifier>{d6d58e8f-329f-477e-900b-9581f78e7a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\Character">
+      <UniqueIdentifier>{7e06fdf7-a24d-458c-89d4-385cee09b21e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts\Character">
+      <UniqueIdentifier>{20dfe633-32b1-4919-a0e9-5882811dc12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts\Character\Attributes">
+      <UniqueIdentifier>{cd5c83c2-dbe6-42f4-b13b-c3f4f4547db3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\World">
+      <UniqueIdentifier>{461db2e2-f820-4ad7-acfa-3a7678975aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UIManager">
+      <UniqueIdentifier>{4e32bb52-0a8c-4c5a-b671-fbab6024db8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\UI">
+      <UniqueIdentifier>{370c9494-9f79-4219-9771-60698c5410cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\Map">
+      <UniqueIdentifier>{563fcf66-2066-4db9-a8fc-f6ace9faaccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UIManager\Ladder">
+      <UniqueIdentifier>{fe08adfb-cd2c-4336-9c0d-cd5af5dc6b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\UI\Ladder">
+      <UniqueIdentifier>{adb726e8-0a72-4709-81f0-8429862851b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{3d54db64-1744-4816-832a-a57bab0e37e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h" />
-    <ClInclude Include="Configuration.h" />
     <ClInclude Include="ForbiddenString.h" />
     <ClInclude Include="Conststring.h" />
     <ClInclude Include="Cryptography/Cryptography.h">
@@ -76,9 +123,6 @@
     </ClInclude>
     <ClInclude Include="Game/Accounts/Account.h">
       <Filter>Game\Accounts</Filter>
-    </ClInclude>
-    <ClInclude Include="Game/Accounts/LobbyCharacter.h">
-      <Filter>Game\Accounts\LobbyCharacters</Filter>
     </ClInclude>
     <ClInclude Include="Network/Packets/BaseClientPacket.h">
       <Filter>Network\Packets</Filter>
@@ -125,18 +169,6 @@
     <ClInclude Include="Network/Packets/Server/Messages/S_infoi.h">
       <Filter>Network\Packets\Server\Messages</Filter>
     </ClInclude>
-    <ClInclude Include="Game/LangType.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game/HairStyleType.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game/GenderType.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game/ClassType.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Network/Network.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -145,6 +177,97 @@
     </ClInclude>
     <ClInclude Include="Network/Client.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Types/LangType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Types/HairStyleType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Types/GenderType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Types/ClassType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Game/Accounts/LobbyCharacters/LobbyCharacter.h">
+      <Filter>Game\Accounts\LobbyCharacters</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Client\R_game_start.h">
+      <Filter>Network\Packets\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Messages\S_tit.h">
+      <Filter>Network\Packets\Server\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\ReputationType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\DignityType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\S_fd.h">
+      <Filter>Network\Packets\Server\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game/Accounts/Character/OwnCharacter.h">
+      <Filter>Game\Accounts\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Reputation.h">
+      <Filter>Game\Accounts\Character\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\World\World.h">
+      <Filter>Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\S_c_info.h">
+      <Filter>Network\Packets\Server\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Position.h">
+      <Filter>Game\Accounts\Character\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Map\S_at.h">
+      <Filter>Network\Packets\Server\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UIManager\Ladder\ReputationManager.h">
+      <Filter>Game\UIManager\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UIManager\Ladder\LadderEntity.h">
+      <Filter>Game\UIManager\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_kdlinit.h">
+      <Filter>Network\Packets\Server\UI\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UIManager\Ladder\Act4PointsManager.h">
+      <Filter>Game\UIManager\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_flinit.h">
+      <Filter>Network\Packets\Server\UI\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UIManager\Ladder\ComplimentManager.h">
+      <Filter>Game\UIManager\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\UI\Ladder\S_clinit.h">
+      <Filter>Network\Packets\Server\UI\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\S_c_info_reset.h">
+      <Filter>Network\Packets\Server\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration/ServerConfiguration.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\XpConfiguration.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\S_lev.h">
+      <Filter>Network\Packets\Server\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Level.h">
+      <Filter>Game\Accounts\Character\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Map\S_c_map.h">
+      <Filter>Network\Packets\Server\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\CharStatsConfiguration.h">
+      <Filter>Configuration</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

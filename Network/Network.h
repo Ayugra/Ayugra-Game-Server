@@ -6,18 +6,23 @@
 class Network
 {
 public:
-	Network(asio::io_context& IoContext, unsigned short Port);
+	Network(asio::io_context& IoContext, unsigned short Port, std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter);
 	~Network();
 	void startServer();
+	void sendPacketBroadcast(const std::string& Packet);
+	void sendPacketTo(const std::vector<int>& connectionsId, const std::string& Packet);
+	std::vector<OwnCharacter> getConnectedCharacters() const;
 
 private:
 	void startAccept();
 	void onAccept(std::shared_ptr<Connection> connection, const asio::error_code& error);
-	void onDisconnection(size_t connection);
+	void onDisconnection(int connection);
 
 	asio::io_context& ioContext;
 	asio::ip::tcp::acceptor acceptor;
 	bool started;
-	size_t lastConnectionId;
-	std::map<size_t, std::shared_ptr<Connection>> connections;
+	int lastConnectionId;
+	std::map<int, std::shared_ptr<Connection>> connections;
+
+	std::function<void(std::shared_ptr<OwnCharacter>)> cbRetrieveCharacter;
 };

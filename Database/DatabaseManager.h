@@ -18,7 +18,8 @@ public:
 
 	static std::vector<std::vector<std::string>> query(const std::string& query, int maxNbIteration);
 	static std::vector<std::string> query(const std::string& query);
-	static bool call(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args);
+	static std::vector<std::vector<std::string>> call(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args);
+	static std::vector<std::vector<std::string>> call(const std::string& functionName, const std::pair<SQL_TYPE, std::string>& args);
 	static std::vector<std::vector<std::string>> selectFunction(const std::string& functionName, const std::vector<std::pair<SQL_TYPE, std::string>>& args);
 
 	bool connect();
