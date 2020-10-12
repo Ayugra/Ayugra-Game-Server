@@ -20,7 +20,7 @@ public:
 
 	// Signals & Slots system
 	void setDisconnectionCallback(std::function<void(int)> CbDisconnect);
-	void setRetrieveCharacterCallback(std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter);
+	void setRetrieveCharacterCallback(std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> CbRetrieveCharacter);
 
 private:
 	Connection(asio::io_context& IoContext);
@@ -44,5 +44,5 @@ private:
 
 	// Signals & Slots system
 	std::function<void(int)> cbDisconnect;
-	std::function<void(std::shared_ptr<OwnCharacter>)> cbRetrieveCharacter;
+	std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> cbRetrieveCharacter;
 };

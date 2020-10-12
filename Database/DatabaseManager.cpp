@@ -102,11 +102,9 @@ std::vector<std::vector<std::string>> DatabaseManager::call(const std::string& f
 	MYSQL_ROW row;
 	while (row = mysql_fetch_row(res))
 	{
-		if (row[0] == nullptr)
-			break;
 		std::vector<std::string> tmp;
 		for (size_t i = 0; i < res->field_count; i++)
-			tmp.push_back(row[i]); // Populate by columns
+			tmp.push_back(row[i] == nullptr ? "" : row[i]); // Populate by columns
 		output.push_back(tmp); // Populate by rows
 	}
 	while (mysql_more_results(connection))

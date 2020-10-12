@@ -2,7 +2,7 @@
 #include "Utils.h"
 #include "Database/DatabaseManager.h"
 
-OwnCharacter::OwnCharacter(const LobbyCharacter& lobChar)
+OwnCharacter::OwnCharacter(const LobbyCharacter& lobChar, std::function<void(std::string)> CbSendPacket)
 	: id(lobChar.getCharacterId())
 	, pseudonym(lobChar.getPseudonym())
 	, slot(lobChar.getSlot())
@@ -15,10 +15,27 @@ OwnCharacter::OwnCharacter(const LobbyCharacter& lobChar)
 	, questAct(lobChar.getQuestAct())
 	, questChapter(lobChar.getQuestChapter())
 	, petSet(lobChar.getPetSet())
+	, authority(lobChar.getAuthority())
+	, cbSendPacket(CbSendPacket)
 {
 	loadLevelProperties(lobChar.getLevel(), lobChar.getLevelJob(), lobChar.getLevelHero());
 	loadReputationProperties();
 	loadPositionProperties();
+	inventory.loadInventory(id);
+}
+
+void OwnCharacter::changeMap(int mapId, int mapX, int mapY)
+{
+	position.mapId = mapId;
+	position.posX = mapX;
+	position.posY = mapY;
+	position.direction = 2;
+}
+
+void OwnCharacter::walk(int x, int y)
+{
+	position.posX = x;
+	position.posY = y;
 }
 
 void OwnCharacter::loadLevelProperties(int levelN, int levelJ, int levelH)

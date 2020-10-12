@@ -63,7 +63,7 @@ bool XpConfiguration::reload()
 	}
 	else
 	{
-		char buffer[112];
+		char buffer[128];
 		strerror_s(buffer, status);
 		std::cerr << "Configuration : error n" << status << " (" << buffer << ")\n";
 		return false;

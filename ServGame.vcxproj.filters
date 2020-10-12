@@ -24,9 +24,6 @@
     <ClCompile Include="Game/Accounts/Character/OwnCharacter.cpp">
       <Filter>Game\Accounts\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Game\World\World.cpp">
-      <Filter>Game\World</Filter>
-    </ClCompile>
     <ClCompile Include="Configuration/ServerConfiguration.cpp">
       <Filter>Configuration</Filter>
     </ClCompile>
@@ -36,6 +33,40 @@
     <ClCompile Include="Configuration\CharStatsConfiguration.cpp">
       <Filter>Configuration</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\SubInventory.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\Inventory.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\Item.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\WornStuff.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration\GameFiles\ItemDatParser.cpp">
+      <Filter>Configuration\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\Shell.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Accounts\Character\Attributes\Inventory\Enhancement.cpp">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Map\Map.cpp">
+      <Filter>World\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Entities\Monster.cpp">
+      <Filter>Game\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Entities\Portal.cpp">
+      <Filter>Game\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="World\World.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration\GameFiles\MonsterDatParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Network">
@@ -86,9 +117,6 @@
     <Filter Include="Game\Accounts\Character\Attributes">
       <UniqueIdentifier>{cd5c83c2-dbe6-42f4-b13b-c3f4f4547db3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\World">
-      <UniqueIdentifier>{461db2e2-f820-4ad7-acfa-3a7678975aa1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UIManager">
       <UniqueIdentifier>{4e32bb52-0a8c-4c5a-b671-fbab6024db8e}</UniqueIdentifier>
     </Filter>
@@ -106,6 +134,36 @@
     </Filter>
     <Filter Include="Configuration">
       <UniqueIdentifier>{3d54db64-1744-4816-832a-a57bab0e37e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts\Character\Attributes\Inventory">
+      <UniqueIdentifier>{6951172c-326a-484f-b664-54c743dc01ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Server\Character\Inventory">
+      <UniqueIdentifier>{6e749a8f-6838-4698-9ce5-17d0f0e4306d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configuration\GameFiles">
+      <UniqueIdentifier>{3dc81735-cd0d-40cb-9a63-3c7a1b65f016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement">
+      <UniqueIdentifier>{a84eafbf-b2ea-4b84-a939-6ba9c012f045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Client\Inventory">
+      <UniqueIdentifier>{bfdd69bb-d625-495a-b37f-2c8e956c138c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World">
+      <UniqueIdentifier>{ffe6d984-cb33-4188-ab2d-7b9488cd082e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Map">
+      <UniqueIdentifier>{60be1562-b1cc-4e4d-8594-2ff9ce8000b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Entities">
+      <UniqueIdentifier>{9b7106af-4804-4126-a591-5e3bbca652f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packets\Client\Map">
+      <UniqueIdentifier>{42021e81-a539-47a8-9c33-f6e2969a9760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pathfinding">
+      <UniqueIdentifier>{792fd462-224a-43c0-b95f-19fb328bf35c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +273,6 @@
     <ClInclude Include="Game\Accounts\Character\Attributes\Reputation.h">
       <Filter>Game\Accounts\Character\Attributes</Filter>
     </ClInclude>
-    <ClInclude Include="Game\World\World.h">
-      <Filter>Game\World</Filter>
-    </ClInclude>
     <ClInclude Include="Network\Packets\Server\Character\S_c_info.h">
       <Filter>Network\Packets\Server\Character</Filter>
     </ClInclude>
@@ -269,5 +324,102 @@
     <ClInclude Include="Configuration\CharStatsConfiguration.h">
       <Filter>Configuration</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\SubInventory.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\Inventory.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\InventoryType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\Item.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\Inventory\S_inv.h">
+      <Filter>Network\Packets\Server\Character\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\Inventory\S_gold.h">
+      <Filter>Network\Packets\Server\Character\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Title.h">
+      <Filter>Game\Accounts\Character\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\Inventory\S_equip.h">
+      <Filter>Network\Packets\Server\Character\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\WornStuff.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\GameFiles\ItemDatParser.h">
+      <Filter>Configuration\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\ShellEffect.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\EnhancementEffect.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\Shell.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Accounts\Character\Attributes\Inventory\Enhancement.h">
+      <Filter>Game\Accounts\Character\Attributes\Inventory\ShellAndEnhancement</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\Inventory\S_e_info.h">
+      <Filter>Network\Packets\Server\Character\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\NosbazardType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\AttackType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Client\Inventory\R_eqinfo.h">
+      <Filter>Network\Packets\Client\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Map\Map.h">
+      <Filter>World\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Entities\BaseEntity.h">
+      <Filter>Game\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\PortalType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\EntityType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Entities\Monster.h">
+      <Filter>Game\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Entities\Portal.h">
+      <Filter>Game\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Map\S_gp.h">
+      <Filter>Network\Packets\Server\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Client\Map\R_preq.h">
+      <Filter>Network\Packets\Client\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="World\World.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\PathfindingUtils.h">
+      <Filter>Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Map\S_mapout.h">
+      <Filter>Network\Packets\Server\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Server\Character\S_c_mode.h">
+      <Filter>Network\Packets\Server\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types\WingType.h">
+      <Filter>Game\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packets\Client\Map\R_walk.h">
+      <Filter>Network\Packets\Client\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\GameFiles\MonsterDatParser.h" />
   </ItemGroup>
 </Project>

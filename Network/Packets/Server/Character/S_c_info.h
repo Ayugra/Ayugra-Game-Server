@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Network/Packets/BaseServerPacket.h"
-#include "Game/Types/GenderType.h"
-#include "Game/Types/HairStyleType.h"
-#include "Game/Types/ClassType.h"
-#include "Game/Types/ReputationType.h"                                             
+#include "Configuration/GameFiles/ItemDatParser.h"
+#include "Game/Accounts/Character/OwnCharacter.h"
 
 class S_c_info : public BaseServerPacket
 {
@@ -32,5 +30,32 @@ public:
         packet += " " + std::to_string(spUpgrade);
         packet += " " + std::to_string(isArenaWinner);
         packet += " " + std::to_string(wingsId);
+    }
+
+    S_c_info(const OwnCharacter& character)
+        : BaseServerPacket("c_info")
+    {
+        packet += " " + character.getPseudonym();
+        packet += " - " + std::to_string(-1); // TODO : group id
+        packet += " " + std::to_string(-1); // TODO : familly id
+        packet += "." + std::to_string(-1); // TODO : familly role conststring
+        packet += " -"; // TODO : familly name
+        packet += " " + std::to_string(character.getId());
+        packet += " " + std::to_string(character.getAuthority());
+        packet += " " + std::to_string(static_cast<int>(character.getGender()));
+        packet += " " + std::to_string(static_cast<int>(character.getHairStyle()));
+        packet += " " + std::to_string(character.getHairColor());
+        packet += " " + std::to_string(static_cast<int>(character.getClass()));
+        packet += " " + std::to_string(static_cast<int>(character.getReputationProperties().reputationIcon));
+        packet += " " + std::to_string(character.getReputationProperties().compliment);
+        packet += " " + std::to_string(0); // TODO : MorphID
+        packet += " " + std::to_string(0); // TODO : IsInvisible
+        packet += " " + std::to_string(0); // TODO : familly level
+        packet += " " + std::to_string(0); // TODO : sp upgrade
+        packet += " " + std::to_string(1); // TODO : isArenaWinner
+
+        // POSSIBLE CRASH IF ITEM DOESN'T EXIST ??
+        ItemStruct itm = ItemDat::getItemStruct(character.getInventory().getWornStuff().getItem(16).getVnum());
+        packet += " " + std::to_string(itm.getItemMorphId());
     }
 };

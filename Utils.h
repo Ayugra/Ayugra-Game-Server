@@ -21,12 +21,29 @@ static T ToNumber(const char* str)
 	return var;
 }
 
+static int ToInt(std::string str)
+{
+	return ToNumber<int>(str.c_str());
+}
+
 static std::string join(const std::vector<std::string>& str, const std::string& append)
 {
 	std::ostringstream imploded;
 	std::copy(str.begin(), str.end(),
 		std::ostream_iterator<std::string>(imploded, append.c_str()));
 	return imploded.str().erase(imploded.str().size() - append.size(), append.size());
+}
+
+static std::vector<std::string> splitSubstr(std::string text, const std::string& delim)
+{
+	size_t pos = 0;
+	std::vector<std::string> tokens;
+	while ((pos = text.find(delim)) != std::string::npos)
+	{
+		tokens.push_back(text.substr(0, pos));
+		text.erase(0, pos + delim.length());
+	}
+	return tokens;
 }
 
 static std::vector<std::string> split(const std::string& text, const std::string& delims)
@@ -85,18 +102,4 @@ static bool isUuidValid(const std::string& uuid)
 	if (!(uuid.find_first_not_of(HEXADECIMAL_LOWER_ONLY, 24) == std::string::npos))
 		return false;
 	return true;
-}
-
-// TO OPTIMISE
-static bool contains(const std::string& src, const std::string& charset)
-{
-	for (size_t i = 0; i < src.size(); i++)
-	{
-		for (size_t j = 0; j < charset.size(); j++)
-		{
-			if (src[i] == charset[j])
-				return true;
-		}
-	}
-	return false;
 }

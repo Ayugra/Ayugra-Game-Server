@@ -27,6 +27,7 @@ public:
 	int getAuthority() const;
 	LobbyCharacter getSelectedLobbyCharacter() const;
 
+	bool isConnected() const { return connected; }
 	void setConnectionId(int ConnectionId);
 	int getConnectionId() const;
 

@@ -2,7 +2,13 @@
 
 Engine::Engine(asio::io_context& IoContext, ServerConfiguration Config)
 	: netIo(IoContext)
-	, network(IoContext, Config.d_server_port(), std::bind(&Engine::retrieveCharacter, this, std::placeholders::_1))
+	, network(IoContext, Config.d_server_port(), [this](std::shared_ptr<OwnCharacter> Character, const BaseClientPacket& Packet)
+	{
+		return retrieveCharacter(Character, Packet);
+	}, [this](OwnCharacter character)
+	{
+		disconnectCharacter(character);
+	})
 	, config(Config)
 {
 	DatabaseManager::call("p_disconnect", { SQL_TYPE::INT, "1" }); // Used for test, remove later
@@ -10,13 +16,10 @@ Engine::Engine(asio::io_context& IoContext, ServerConfiguration Config)
 	initReputationLadder();
 	initAct4pointsLadder();
 	initComplimentLadder();
-
-
 }
 
 Engine::~Engine()
 {
-
 }
 
 void Engine::start()
@@ -24,9 +27,18 @@ void Engine::start()
 	netThread = std::thread(&Engine::startServerConnection, this);
 }
 
-void Engine::retrieveCharacter(std::shared_ptr<OwnCharacter> character)
+std::vector<std::string> Engine::retrieveCharacter(std::shared_ptr<OwnCharacter> character, const BaseClientPacket& Packet)
 {
-	std::cout << "Engine::retrieveCharacter() : " << character->getPseudonym();
+	std::vector<std::string> packets;
+	packets.push_back("stat 500 1000 600 800 1 32");
+	if (world.handlePacket(character, Packet, packets) > 0) // >0 or >=0 ? Still need to determinate my needs
+		return packets;
+	return {};
+}
+
+void Engine::disconnectCharacter(const OwnCharacter& character)
+{
+	world.disconnectCharacter(character);
 }
 
 void Engine::startServerConnection()

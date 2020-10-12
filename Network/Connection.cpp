@@ -80,7 +80,7 @@ void Connection::setDisconnectionCallback(std::function<void(int)> CbDisconnect)
 	cbDisconnect = CbDisconnect;
 }
 
-void Connection::setRetrieveCharacterCallback(std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter)
+void Connection::setRetrieveCharacterCallback(std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> CbRetrieveCharacter)
 {
 	cbRetrieveCharacter = CbRetrieveCharacter;
 	client.setRetrieveCharacterCallback(CbRetrieveCharacter);

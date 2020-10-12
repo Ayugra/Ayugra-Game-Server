@@ -6,6 +6,7 @@
 #include "Game/UIManager/Ladder/ReputationManager.h"
 #include "Game/UIManager/Ladder/Act4PointsManager.h"
 #include "Game/UIManager/Ladder/ComplimentManager.h"
+#include "World/World.h"
 
 class Engine
 {
@@ -14,7 +15,8 @@ public:
 	~Engine();
 
 	void start();
-	void retrieveCharacter(std::shared_ptr<OwnCharacter> character);
+	std::vector<std::string> retrieveCharacter(std::shared_ptr<OwnCharacter> character, const BaseClientPacket& packet);
+	void disconnectCharacter(const OwnCharacter& character);
 
 private:
 	void startServerConnection();
@@ -27,6 +29,7 @@ private:
 	ServerConfiguration config;
 	asio::io_context& netIo;
 	std::thread netThread;
+	World world;
 };
 
 

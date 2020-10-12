@@ -29,7 +29,8 @@ public:
 	{}
 
 	LobbyCharacter(int Id, std::string Pseudonym, short Slot, GenderType Gender, HairStyleType HairStyle, int HairColor, ClassType CharClass,
-		int Level, int LevelHero, int LevelJob, bool Rename, std::string WornStuff, short QuestAct, short QuestChapter, std::string PetSet)
+		int Level, int LevelHero, int LevelJob, bool Rename, std::string WornStuff, short QuestAct, short QuestChapter, std::string PetSet,
+		int Authority)
 		: id(Id)
 		, pseudonym(Pseudonym)
 		, slot(Slot)
@@ -46,6 +47,7 @@ public:
 		, questChapter(QuestChapter)
 		, petSet(PetSet)
 		, connectionId(-1)
+		, authority(Authority)
 		, valid(true)
 	{
 		
@@ -93,6 +95,7 @@ public:
 	std::string getPetSet() const		{ return petSet; }
 
 	int getConnectionId() const			{ return connectionId; }
+	int getAuthority() const			{ return authority; }
 	bool isValid() const				{ return valid; }
 
 
@@ -117,5 +120,6 @@ private:
 	short questChapter;
 	std::string petSet;
 
+	int authority;
 	int connectionId;
 };

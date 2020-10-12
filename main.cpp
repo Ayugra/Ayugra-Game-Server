@@ -12,8 +12,17 @@
 
 #include "Configuration/XpConfiguration.h"
 #include "Configuration/CharStatsConfiguration.h"
+#include "Configuration/GameFiles/ItemDatParser.h"
 int main()
 {
+	ItemDat itemDat("Item.dat", "_code_fr_Item.txt", 65536 /*to add in conf*/);
+	while (!itemDat.startParsing())
+	{
+		std::cout << "Item.dat not loaded... Retry in 5s" << std::endl;
+		Sleep(5000);
+	}
+	std::cout << "Item.dat successfully loaded." << std::endl;
+	
 	XpConfiguration XpConfig;
 	while (!XpConfig.load())
 	{
@@ -42,7 +51,6 @@ int main()
 	while (true)
 	{
 		Sleep(2000);
-		std::cout << ".";
 	}
 	return 0;
 }

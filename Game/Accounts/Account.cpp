@@ -81,23 +81,20 @@ int Account::getConnectionId() const
 
 std::vector<std::string> Account::handlePacket(const BaseClientPacket& Packet)
 {
-	if (!connected)
-	{
-		if (username.empty())
-			return handleUsernamePacket(Packet);
-		else if (password.empty())
-			return handlePasswordPacket(Packet);
-		else if (Packet.getHeader() == "Char_NEW")
-			return handle_Char_NEW(Packet);
-		else if (Packet.getHeader() == "Char_NEW_JOB")
-			return handle_Char_NEW_JOB(Packet);
-		else if (Packet.getHeader() == "Char_DEL")
-			return handle_Char_DEL(Packet);
-		else if (Packet.getHeader() == "Char_REN")
-			return handle_Char_REN(Packet);
-		else if (Packet.getHeader() == "select")
-			return handle_select(Packet);
-	}
+	if (username.empty())
+		return handleUsernamePacket(Packet);
+	else if (password.empty())
+		return handlePasswordPacket(Packet);
+	else if (Packet.getHeader() == "Char_NEW")
+		return handle_Char_NEW(Packet);
+	else if (Packet.getHeader() == "Char_NEW_JOB")
+		return handle_Char_NEW_JOB(Packet);
+	else if (Packet.getHeader() == "Char_DEL")
+		return handle_Char_DEL(Packet);
+	else if (Packet.getHeader() == "Char_REN")
+		return handle_Char_REN(Packet);
+	else if (Packet.getHeader() == "select")
+		return handle_select(Packet);
 	return {};
 }
 
@@ -256,7 +253,7 @@ std::vector<std::string> Account::loadLobbyCharacters(short selected)
 		std::vector<std::vector<std::string>> res = DatabaseManager::call("p_get_characters_lobby_infos", args);
 		for (int i = 0; i < res.size(); i++)
 		{
-			if (res[i].size() != 11)
+			if (res[i].size() != 21)
 				continue;
 			int id = ToNumber<int>(res[i][0].c_str());
 			std::string pseudo = res[i][1];
@@ -269,12 +266,14 @@ std::vector<std::string> Account::loadLobbyCharacters(short selected)
 			int level = ToNumber<short>(res[i][8].c_str());
 			int levelH = ToNumber<short>(res[i][9].c_str());
 			int levelJ = ToNumber<short>(res[i][10].c_str());
+			std::string wornStuff = res[i][11].empty() ? "-1" : res[i][11];
+			for (size_t j = 12; j < res[i].size(); j++)
+				wornStuff += "." + (res[i][j].empty() ? "-1" : res[i][j]);
 			int questAct = 1;
 			int questChapter = 1;
 			std::string pet = "-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.";
-			std::string wornStuff = "-1.-1.-1.-1.-1.-1.-1.-1.-1.-1";
 			lobbyCharacters.insert(std::pair<short, LobbyCharacter>(slot, LobbyCharacter(id, pseudo, slot, gender, hS, hC, cl, level,
-				levelH, levelJ, rename, wornStuff, questAct, questChapter, pet)));
+				levelH, levelJ, rename, wornStuff, questAct, questChapter, pet, authority)));
 		}
 	}
 
@@ -322,7 +321,7 @@ bool Account::createCharacter(const R_Char_NEW& Packet, ClassType charClass)
 	int charID = ToNumber<int>(output[0][0].c_str());
 	LobbyCharacter lobChar(charID, Packet.getPseudonym(), Packet.getSlot(), Packet.getGender(), Packet.getHairStyle(), Packet.getHairColor(),
 		charClass, charClass == ClassType::MARTIAL_ARTIST ? 80 : 1, 0, 1, false, "-1.-1.-1.-1.-1.-1.-1.-1.-1.-1", 1, 1,
-		"-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.");
+		"-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.-1.", authority);
 	lobbyCharacters.insert(std::pair<int, LobbyCharacter>(Packet.getSlot(), lobChar));
 	return true;
 }

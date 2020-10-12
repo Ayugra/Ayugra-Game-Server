@@ -6,7 +6,8 @@
 class Network
 {
 public:
-	Network(asio::io_context& IoContext, unsigned short Port, std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter);
+	Network(asio::io_context& IoContext, unsigned short Port, std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> CbRetrieveCharacter,
+		std::function<void(OwnCharacter)> CbDisconnectCharacter);
 	~Network();
 	void startServer();
 	void sendPacketBroadcast(const std::string& Packet);
@@ -24,5 +25,6 @@ private:
 	int lastConnectionId;
 	std::map<int, std::shared_ptr<Connection>> connections;
 
-	std::function<void(std::shared_ptr<OwnCharacter>)> cbRetrieveCharacter;
+	std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> cbRetrieveCharacter;
+	std::function<void(OwnCharacter)> cbDisconnectCharacter;
 };

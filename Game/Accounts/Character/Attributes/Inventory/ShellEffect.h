@@ -1,0 +1,169 @@
+#pragma once
+
+enum class ShellGradeType
+{
+	// Common Weapon Grade
+	WEAPON_COM_C = 1,
+	WEAPON_COM_B = 2,
+	WEAPON_COM_A = 3,
+	WEAPON_COM_S = 4,
+	// Special Weapon Grade
+	WEAPON_SPE_C = 5,
+	WEAPON_SPE_B = 6,
+	WEAPON_SPE_A = 7,
+	WEAPON_SPE_S = 8,
+	// PvP Weapon Grade
+	WEAPON_PVP_C = 9,
+	WEAPON_PVP_B = 10,
+	WEAPON_PVP_A = 11,
+	WEAPON_PVP_S = 12,
+	// Common Armor Grade
+	ARMOR_COM_C = 13,
+	ARMOR_COM_B = 14,
+	ARMOR_COM_A = 15,
+	ARMOR_COM_S = 16,
+	// Special Armor Grade
+	ARMOR_SPE_C = 17,
+	ARMOR_SPE_B = 18,
+	ARMOR_SPE_A = 19,
+	ARMOR_SPE_S = 20,
+	// PvP Armor Grade
+	ARMOR_PVP_C = 21,
+	ARMOR_PVP_B = 22,
+	ARMOR_PVP_A = 23,
+	ARMOR_PVP_S = 24,
+};
+enum class ShellWeaponEffectType
+{
+	NONE = 0,
+	DAMAGE_FLAT = 1,
+	DAMAGE_PERCENT = 2,
+	PROBA_BLEEDING_MINOR = 3,
+	PROBA_BLEEDING = 4,
+	PROBA_BLEEDING_HEAVY = 5,
+	PROBA_BLACKOUT = 6,
+	PROBA_FREEZE = 7,
+	PROBA_BLACKOUT_DEADLY = 8,
+	DAMAGE_PLANT = 9,
+	DAMAGE_ANIMAL = 10,
+	DAMAGE_MONSTER = 11,
+	DAMAGE_ZOMBIE = 12,
+	DAMAGE_ANIMAL_SMALL = 13,
+	DAMAGE_WORLD_BOSS = 14,
+	CRITICAL_CHANCE = 15,
+	CRITICAL_DAMAGE = 16,
+	NO_INTERRUPTION = 17,
+	ELEMENT_FIRE = 18,
+	ELEMENT_WATER = 19,
+	ELEMENT_LIGHT = 20,
+	ELEMENT_DARK = 21,
+	ELEMENT_ALL = 22,
+	MP_REDUCTION = 23,
+	REGEN_HP = 24,
+	REGEN_MP = 25,
+	SL_ATTACK = 26,
+	SL_DEFENSE = 27,
+	SL_ELEMENT = 28,
+	SL_HPMP = 29,
+	SL_ALL = 30,
+	GAIN_GOLD = 31,
+	GAIN_XP = 32,
+	GAIN_XP_JOB = 33,
+	DAMAGE_PVP = 34,
+	BREAK_DEFENSE_PVP = 35,
+	ELEMENT_REDUCE_FIRE_PVP = 36,
+	ELEMENT_REDUCE_WATER_PVP = 37,
+	ELEMENT_REDUCE_LIGHT_PVP = 38,
+	ELEMENT_REDUCE_DARK_PVP = 39,
+	ELEMENT_REDUCE_ALL_PVP = 40,
+	UNMISSABLE_PVP = 41,
+	DAMAGE_15_PERCENT_PVP = 42,
+	ABSORB_MP_PVP = 43,
+	ELEMENT_IGNORE_FIRE_25_PERCENT = 44,
+	ELEMENT_IGNORE_WATER_25_PERCENT = 45,
+	ELEMENT_IGNORE_LIGHT_25_PERCENT = 46,
+	ELEMENT_IGNORE_DARK_25_PERCENT = 47,
+	GAIN_SP_DURABILITY = 48,
+	PRECISION = 49,
+	CONCENTRATION = 50
+};
+enum class ShellArmorEffectType
+{
+	NONE = 0,
+	DEF_MELEE_FLAT = 1,
+	DEF_DISTANCE_FLAT = 2,
+	DEF_MAGIC_FLAT = 3,
+	DEF_ALL_PERCENT = 4,
+	PROBA_BLEEDING_MINOR = 5,
+	PROBA_BLEEDING_AND_BLEEDING_MINOR = 6,
+	PROBA_BLEEDING_ALL = 7,
+	PROBA_BLACKOUT = 8,
+	PROBA_BLACKOUT_ALL = 9,
+	PROBA_HAND_OF_DEATH = 10,
+	PROBA_FREEZE = 11,
+	PROBA_BLIND = 12,
+	PROBA_FOSSILIZATION = 13,
+	PROBA_DEFENSE_POWER = 14,
+	PROBA_SHOCK = 15,
+	PROBA_PARALYSIS = 16,
+	PROBA_ALL_EFFECT = 17,
+	REGEN_HP_REST = 18,
+	REGEN_HP_STAND = 19,
+	REGEN_MP_REST = 20,
+	REGEN_MP_STAND = 21,
+	REGEN_HP_DEFENSE = 22,
+	PROBA_CRITICAL_HIT = 23,
+	RESISTANCE_FIRE = 24,
+	RESISTANCE_WATER = 25,
+	RESISTANCE_LIGHT = 26,
+	RESISTANCE_DARK = 27,
+	RESISTANCE_ALL = 28,
+	REDUCE_DIGNITY = 29,
+	REDUCE_PRODUCTION = 30,
+	PROBA_PRODUCTION = 31,
+	REGEN_FOOD = 32,
+	DEF_PVP = 33,
+	DODGE_MELEE = 34,
+	DODGE_DISTANCE = 35,
+	DODGE_MAGIC = 36,
+	DODGE_ALL = 37,
+	MANA_PROTECTION_PVP = 38,
+	IMMUNE_FIRE_PVP = 39,
+	IMMUNE_WATER_PVP = 40,
+	IMMUNE_LIGHT_PVP = 41,
+	IMMUNE_DARK_PVP = 42,
+	ABSORB_1 = 43,
+	ABSORB_2 = 44,
+	ABSORB_3 = 45,
+	DODGE_FLAT = 46
+};
+enum class StuffType { ARMOR, WEAPON };
+
+class ShellEffect
+{
+public:
+	ShellEffect(ShellGradeType Grade, ShellWeaponEffectType Effect, int Value)
+		: grade(Grade)
+		, effectArmor(ShellArmorEffectType::NONE)
+		, effectWeapon(Effect)
+		, value(Value)
+	{}
+
+	ShellEffect(ShellGradeType Grade, ShellArmorEffectType Effect, int Value)
+		: grade(Grade)
+		, effectWeapon(ShellWeaponEffectType::NONE)
+		, effectArmor(Effect)
+		, value(Value)
+	{}
+
+	ShellGradeType getGrade() const { return grade; }
+	ShellArmorEffectType getArmorEffect() const { return effectArmor; }
+	ShellWeaponEffectType getWeaponEffect() const { return effectWeapon; }
+	int getValue() const { return value; }
+
+private:
+	ShellGradeType grade;
+	ShellWeaponEffectType effectWeapon;
+	ShellArmorEffectType effectArmor;
+	int value;
+};

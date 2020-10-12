@@ -1,12 +1,14 @@
 #include "Network.h"
 #include <iostream>
 
-Network::Network(asio::io_context& IoContext, unsigned short Port, std::function<void(std::shared_ptr<OwnCharacter>)> CbRetrieveCharacter)
+Network::Network(asio::io_context& IoContext, unsigned short Port, std::function<std::vector<std::string>(std::shared_ptr<OwnCharacter>, const BaseClientPacket&)> CbRetrieveCharacter,
+	std::function<void(OwnCharacter)> CbDisconnectCharacter)
 	: ioContext(IoContext)
 	, acceptor(ioContext, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), Port))
 	, started(false)
 	, lastConnectionId(1)
 	, cbRetrieveCharacter(CbRetrieveCharacter)
+	, cbDisconnectCharacter(CbDisconnectCharacter)
 {
 
 }
@@ -73,6 +75,8 @@ void Network::onAccept(std::shared_ptr<Connection> connection, const asio::error
 
 void Network::onDisconnection(int connectionId)
 {
+	OwnCharacter removedChar = connections.at(connectionId)->getConnectedCharacter();
 	std::cout << "Erased : " << connectionId << std::endl;
 	connections.erase(connectionId);
+	cbDisconnectCharacter(removedChar);
 }
